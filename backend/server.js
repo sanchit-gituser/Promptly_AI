@@ -3,25 +3,24 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import chat from './routes/chat.js';
 
-import wrapAsync from './utils/wrapAsync.js';
-import getData from './utils/geminiData.js';
-
+import 'dotenv/config';
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT ||  3000;
 
 //database connection
+const databaseUrl=process.env.ATLAS_DB;
 main()
 .then(()=>{
     console.log("database connected successfully.");
 })
 .catch(err=>{
-    console.log("connection to database failed.");
+    console.log(err);
 })
 
 
 async function main(){
-    await mongoose.connect("mongodb://localhost:27017/Promptly-AI");
+    await mongoose.connect(databaseUrl);
 }
 
 // default middlewares
@@ -29,11 +28,7 @@ app.use(express.json());
 app.use(cors());
 
 //routes
-// app.post("/getData",wrapAsync(async(req,res,next)=>{
-//     const data=await getData(req.body.prompt);
-//     console.log("data sent to user");
-//     res.send(data);
-// }))
+
 
 app.use("/threads",chat);
 
