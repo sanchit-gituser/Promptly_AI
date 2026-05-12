@@ -13,7 +13,7 @@ export default function InputBox() {
         setGotReply(true);
         setNewChat(false);
         try {
-            let response = await axios.post("http://localhost:3000/threads",
+            let response = await axios.post("https://promptly-ai-vlej.onrender.com/threads",
                 {
                     message: prompt,
                     thread_id: currThreadId
@@ -24,7 +24,7 @@ export default function InputBox() {
             
             // ALWAYS refresh sidebar after message
             try {
-                let threadsRes = await axios.get("http://localhost:3000/threads");
+                let threadsRes = await axios.get("https://promptly-ai-vlej.onrender.com/threads");
 
                 let usefulData = threadsRes.data.map(thread => ({
                     threadId: thread.thread_id,

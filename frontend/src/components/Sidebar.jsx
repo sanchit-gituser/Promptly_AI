@@ -12,7 +12,7 @@ const Sidebar = () => {
     //function to get all threads from database
     const getAllThreads = async () => {
         try {
-            let res = await axios.get("http://localhost:3000/threads");
+            let res = await axios.get("https://promptly-ai-vlej.onrender.com/threads");
 
 
             let usefulData = res.data.map(thread => ({ threadId: thread.thread_id, threadTitle: thread.title }));
@@ -37,7 +37,7 @@ const Sidebar = () => {
     const getThreadChats = async (threadId) => {
         setCurrentThreadID(threadId);
         try {
-            let res = await axios.get(`http://localhost:3000/threads/${threadId}`);
+            let res = await axios.get(`https://promptly-ai-vlej.onrender.com/threads/${threadId}`);
             console.log(res.data.messages);
             setNewChat(false);
             setPrevChats(res.data.messages);
@@ -110,7 +110,7 @@ const Sidebar = () => {
     //delete confirm
     const handleConfirmDelete = async () => {
         try {
-            await axios.delete(`http://localhost:3000/threads/${threadToDelete.id}`);
+            await axios.delete(`https://promptly-ai-vlej.onrender.com/threads/${threadToDelete.id}`);
     
             // UI update (remove thread)
             setAllThreads(prev =>
