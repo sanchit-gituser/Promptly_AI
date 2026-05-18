@@ -1,11 +1,11 @@
 import { MyContext } from "../context/MyContext";
 import { useContext, useState, useEffect } from "react";
-import ReactMarkdown from 'react-markdown';
-import rehypeHighlight from 'rehype-highlight';
-import "highlight.js/styles/github-dark.css";
-import remarkMath from "remark-math";
-import rehypeKatex from "rehype-katex";
-import "katex/dist/katex.min.css";
+import ReactMarkdown from 'react-markdown';       //_______
+import rehypeHighlight from 'rehype-highlight';   //       |
+import "highlight.js/styles/github-dark.css";     //       |
+import remarkMath from "remark-math";             //       |  ==>all these are for syling the response by the model
+import rehypeKatex from "rehype-katex";           //       |
+import "katex/dist/katex.min.css";                //_______|
 
 const Chats = () => {
     let { newChat, setNewChat, prevChats, reply } = useContext(MyContext);
