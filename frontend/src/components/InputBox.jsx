@@ -10,8 +10,8 @@ export default function InputBox() {
 
 
     let getData = async () => {
-        setGotReply(true);
-        setNewChat(false);
+        setGotReply(true);  //loader on
+        setNewChat(false);  //new chat message off 
         try {
             let response = await axios.post("https://promptly-ai-vlej.onrender.com/threads",
                 {
@@ -19,10 +19,10 @@ export default function InputBox() {
                     thread_id: currThreadId
                 });
             setReply(response.data.messages)
-            setGotReply(false);
+            setGotReply(false);  //loader off
 
             
-            // ALWAYS refresh sidebar after message
+            // ALWAYS refresh sidebar after message(because may be a new thread created or most recent chat thread had moved to the top)
             try {
                 let threadsRes = await axios.get("https://promptly-ai-vlej.onrender.com/threads");
 
@@ -38,8 +38,8 @@ export default function InputBox() {
 
         } catch (error) {
             console.log(error.message);
-
-            setReply([{ role: "model", content: "too many request" }])
+            setReply(prev=>([...prev,{ role: "model", content: "too many request" }]));
+            setGotReply(false);
         }
     }
 
