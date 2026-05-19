@@ -54,7 +54,7 @@ const Chats = () => {
                     <div className="h-full flex flex-col gap-4">
                         {prevChats?.slice(0, -1).map((chat, idx) => (
                             <div className={`flex ${chat.role === "user" ? "justify-end" : "justify-start"}`} key={idx}>
-                                <div className={`text-white px-4 py-2 max-w-[75%] ${chat.role === "user" ? "bg-[#009ED8] rounded-[10px_20px_6px_15px]" : "bg-[#111827] border border-white/10 rounded-[20px_20px_15px_6px]"}`}>
+                                <div className={`text-white px-4 py-2 w-fit max-w-[75%] ${chat.role === "user" ? "bg-[#009ED8] rounded-[10px_20px_6px_15px]" : "bg-[#111827] border border-white/10 rounded-[20px_20px_15px_6px]"}`}>
                                     <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeHighlight, rehypeKatex]}>
                                         {chat.content}
                                     </ReactMarkdown>
